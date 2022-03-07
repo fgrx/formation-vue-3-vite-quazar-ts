@@ -4,8 +4,29 @@ import VideoModal from "./components/VideoModal.vue";
 
 <template>
   <header>
-    <el-menu background-color="#3b0187" mode="horizontal" text-color="#fff">
-      <el-menu-item><span class="title-site">DevWall</span></el-menu-item>
+    <el-menu
+      id="top-menu"
+      background-color="#3b0187"
+      mode="horizontal"
+      text-color="#fff"
+    >
+      <el-menu-item
+        ><span class="title-site"
+          ><router-link :to="{ name: 'Home' }"> DevWall </router-link></span
+        ></el-menu-item
+      >
+
+      <el-menu-item class="dock-right"
+        ><router-link :to="{ name: 'Admin' }"
+          >Administration</router-link
+        ></el-menu-item
+      >
+
+      <el-menu-item class="dock-right"
+        ><router-link :to="{ name: 'About' }"
+          >A propos</router-link
+        ></el-menu-item
+      >
     </el-menu>
   </header>
   <main>
@@ -23,8 +44,22 @@ import VideoModal from "./components/VideoModal.vue";
 <style>
 @import "./assets/base.css";
 
+.el-menu-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+
 .title-site {
   font-size: 1.5em;
   text-transform: uppercase;
+}
+
+.router-link-exact-active {
+  background: rgb(95, 47, 191);
+}
+
+.el-menu a {
+  color: white !important;
 }
 </style>

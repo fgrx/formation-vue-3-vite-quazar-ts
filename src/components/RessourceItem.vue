@@ -54,12 +54,14 @@ const playVideoAction = (ressource: IRessource) => {
     class="ressource-item"
     :body-style="{ padding: '0px' }"
   >
-    <el-image
-      style="height: 300px"
-      fit="scale-down"
-      :src="ressource.image || defaultImage"
-      class="ressource-image"
-    />
+    <router-link :to="{ name: 'Ressource', params: { id: ressource.id } }">
+      <el-image
+        style="height: 300px"
+        fit="scale-down"
+        :src="ressource.image || defaultImage"
+        class="ressource-image"
+      />
+    </router-link>
     <div style="padding: 14px">
       <h3 class="ressource-item-title">
         <el-image
@@ -69,6 +71,7 @@ const playVideoAction = (ressource: IRessource) => {
           :src="frenchFlag"
           class="image"
         />
+
         {{ ressource.title }}
       </h3>
       <div class="ressource-item-infos bottom">
