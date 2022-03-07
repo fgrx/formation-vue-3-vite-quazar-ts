@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type IRessource from "./interfaces/iRessource";
-import defaultImage from "./assets/default-image.png";
-import frenchFlag from "./assets/frenchFlag.svg";
+import type IRessource from "@/interfaces/iRessource";
+import RessourceItem from "@/components/RessourceItem.vue";
 
 import data from "./data/db";
 
@@ -26,35 +25,8 @@ const ressources = data as Array<IRessource>;
               :xs="24"
               :md="8"
               :lg="6"
-              class="ressource-item"
             >
-              <el-card
-                :class="ressource.isTop ? 'ressource-item-top-card' : ''"
-                :body-style="{ padding: '0px' }"
-              >
-                <el-image
-                  style="height: 300px"
-                  fit="scale-down"
-                  :src="ressource.image || defaultImage"
-                  class="ressource-image"
-                />
-                <div style="padding: 14px">
-                  <h3 class="ressource-item-title">
-                    <el-image
-                      v-if="ressource.lang === 'fr'"
-                      style="height: 20px"
-                      fit="cover"
-                      :src="frenchFlag"
-                      class="image"
-                    />
-                    {{ ressource.title }}
-                  </h3>
-                  <div class="ressource-item-infos bottom">
-                    {{ ressource.media }} ajouté(e) le
-                    {{ ressource.date }}
-                  </div>
-                </div>
-              </el-card>
+              <RessourceItem :ressource="ressource" />
             </el-col>
           </el-row>
         </el-main>
@@ -69,26 +41,5 @@ const ressources = data as Array<IRessource>;
 .title-site {
   font-size: 1.5em;
   text-transform: uppercase;
-}
-
-.ressource-item {
-  margin-bottom: 20px;
-}
-
-.ressource-item-title {
-  font-size: 1.3em;
-}
-
-.ressource-item-infos {
-  color: grey;
-}
-
-.ressource-item-top-card {
-  background-color: rgb(242, 249, 207);
-}
-
-.ressource-image {
-  text-align: center;
-  display: block;
 }
 </style>
