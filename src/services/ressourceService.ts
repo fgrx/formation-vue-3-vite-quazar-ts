@@ -19,18 +19,35 @@ export default {
   },
 
   async getRessourceById(id: string): Promise<IRessource> {
-    let results;
+    let result;
 
     try {
       const response = await axios(
         `${import.meta.env.VITE_API_SERVER}/ressources/${id}`
       );
-      results = response.data;
+      result = response.data;
     } catch (error) {
       alert("Une erreur s'est produite, veuillez réessayer plus tard...");
       console.error(error);
     }
 
-    return results;
+    return result;
+  },
+
+  async addRessource(ressource: IRessource): Promise<IRessource> {
+    let result;
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_SERVER}/ressources/`,
+        ressource
+      );
+      result = response.data;
+    } catch (error) {
+      alert("Une erreur s'est produite, veuillez réessayer plus tard...");
+      console.error(error);
+    }
+
+    return result;
   },
 };

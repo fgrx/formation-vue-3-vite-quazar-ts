@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import VideoModal from "./components/VideoModal.vue";
+import eventBus from "@/plugins/eventBus";
+import VideoModal from "@/components/VideoModal.vue";
+import RessourceFormModal from "@/components/RessourceFormModal.vue";
+
+const openRessourceFormAction = () => {
+  eventBus.emit("open-Ressource-Form-modal", "hel");
+};
 </script>
 
 <template>
@@ -16,17 +22,26 @@ import VideoModal from "./components/VideoModal.vue";
         ></el-menu-item
       >
 
-      <el-menu-item class="dock-right"
+      <el-menu-item
         ><router-link :to="{ name: 'Admin' }"
           >Administration</router-link
         ></el-menu-item
       >
 
-      <el-menu-item class="dock-right"
+      <el-menu-item
         ><router-link :to="{ name: 'About' }"
           >A propos</router-link
         ></el-menu-item
       >
+
+      <el-menu-item>
+        <el-button
+          style="margin-top: 1em"
+          @click="openRessourceFormAction"
+          type="success"
+          >Ajouter</el-button
+        >
+      </el-menu-item>
     </el-menu>
   </header>
   <main>
@@ -37,6 +52,7 @@ import VideoModal from "./components/VideoModal.vue";
         </el-main>
       </el-container>
       <VideoModal />
+      <RessourceFormModal />
     </div>
   </main>
 </template>

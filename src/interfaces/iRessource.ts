@@ -1,8 +1,11 @@
+type lang = "en" | "fr";
+type media = "book" | "video" | "post" | "other";
+
 interface IRessource {
   id?: string;
-  media: "book" | "video" | "post" | "other";
+  media: media;
   title: string;
-  lang: "fr" | "en";
+  lang: lang;
   image?: string;
   url: string;
   description?: string;
@@ -11,5 +14,5 @@ interface IRessource {
   isValid: boolean;
   date: string;
 }
-
+export type { lang, media };
 export default IRessource;
