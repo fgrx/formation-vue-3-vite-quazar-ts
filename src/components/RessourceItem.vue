@@ -7,6 +7,7 @@ import { computed } from "vue";
 
 interface IProps {
   ressource: IRessource;
+  isBookmark: Boolean;
 }
 const props = defineProps<IProps>();
 
@@ -66,11 +67,17 @@ const removeFromBookmarksAction = (ressource: IRessource) => {
         {{ mediaInFrench }} ajouté le
         {{ dateInFrench }}
       </div>
-      <el-row class="bookmarks-buttons">
-        <el-button @click="addToBookmarksAction(ressource)" type="primary"
+      <el-row class="ressource-action-buttons">
+        <el-button
+          @click="addToBookmarksAction(ressource)"
+          type="primary"
+          v-if="!isBookmark"
           >+ liste</el-button
         >
-        <el-button @click="removeFromBookmarksAction(ressource)" type="default"
+        <el-button
+          v-if="isBookmark"
+          @click="removeFromBookmarksAction(ressource)"
+          type="default"
           >- liste</el-button
         >
       </el-row>
@@ -100,7 +107,7 @@ const removeFromBookmarksAction = (ressource: IRessource) => {
   display: block;
 }
 
-.bookmarks-buttons {
+.ressource-action-buttons {
   margin-top: 1em;
 }
 </style>

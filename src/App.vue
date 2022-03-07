@@ -47,6 +47,7 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
                 <RessourceItem
                   @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
                   :ressource="ressource"
+                  :isBookmark="true"
                 />
               </el-col>
             </el-row>
@@ -64,6 +65,7 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
               <RessourceItem
                 @add-to-bookmarks="addToBookmarksAction(ressource)"
                 :ressource="ressource"
+                :isBookmark="false"
               />
             </el-col>
           </el-row>
