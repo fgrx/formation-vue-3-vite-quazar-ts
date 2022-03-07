@@ -3,11 +3,22 @@ import type IRessource from "@/interfaces/iRessource";
 import RessourceItem from "@/components/RessourceItem.vue";
 import VideoModal from "./components/VideoModal.vue";
 
-import data from "./data/db";
+import { ElLoading } from "element-plus";
+
+import ressourceService from "@/services/ressourceService";
+
 import { ref } from "vue";
 
-const ressources = data as Array<IRessource>;
+const ressources = ref([] as Array<IRessource>);
 const bookmarks = ref([] as Array<IRessource>);
+
+const loading = ElLoading.service({
+  lock: true,
+  text: "Chargement",
+  background: "rgba(0, 0, 0, 0.7)",
+});
+ressourceService.getRessources().then((res) => (ressources.value = res));
+loading.close();
 
 const addToBookmarksAction = (ressource: IRessource) => {
   if (!bookmarks.value.includes(ressource)) bookmarks.value.push(ressource);
@@ -32,7 +43,7 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
   </header>
   <main>
     <div class="common-layout">
-      <el-container>
+      <el-container v-loading="isLoading">
         <el-main>
           <el-card v-if="bookmarks.length">
             <h2>Liste de lecture</h2>
