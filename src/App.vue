@@ -3,8 +3,24 @@ import type IRessource from "@/interfaces/iRessource";
 import RessourceItem from "@/components/RessourceItem.vue";
 
 import data from "./data/db";
+import { ref } from "vue";
 
 const ressources = data as Array<IRessource>;
+const bookmarks = ref([] as Array<IRessource>);
+
+const addToBookmarksAction = (ressource: IRessource) => {
+  if (!bookmarks.value.includes(ressource)) bookmarks.value.push(ressource);
+};
+
+const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
+  bookmarks.value = bookmarks.value.filter(
+    (ressource) => ressource.id !== ressourceToRemove.id
+  );
+
+  //ou
+  // const position = bookmarks.value.indexOf(ressourceToRemove);
+  // bookmarks.value.splice(position, 1);
+};
 </script>
 
 <template>
@@ -13,11 +29,30 @@ const ressources = data as Array<IRessource>;
       <el-menu-item><span class="title-site">DevWall</span></el-menu-item>
     </el-menu>
   </header>
-
   <main>
     <div class="common-layout">
       <el-container>
         <el-main>
+          <el-card v-if="bookmarks.length">
+            <h2>Liste de lecture</h2>
+
+            <el-row :gutter="40">
+              <el-col
+                v-for="ressource in bookmarks"
+                :key="ressource.id"
+                :xs="24"
+                :md="8"
+                :lg="6"
+              >
+                <RessourceItem
+                  @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
+                  :ressource="ressource"
+                />
+              </el-col>
+            </el-row>
+          </el-card>
+
+          <h2>Toutes les ressources</h2>
           <el-row :gutter="40">
             <el-col
               v-for="ressource in ressources"
@@ -26,7 +61,10 @@ const ressources = data as Array<IRessource>;
               :md="8"
               :lg="6"
             >
-              <RessourceItem :ressource="ressource" />
+              <RessourceItem
+                @add-to-bookmarks="addToBookmarksAction(ressource)"
+                :ressource="ressource"
+              />
             </el-col>
           </el-row>
         </el-main>

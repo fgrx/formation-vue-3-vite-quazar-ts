@@ -27,6 +27,16 @@ const mediaInFrench = computed(() => {
       return "Autre";
   }
 });
+
+const emit = defineEmits(["add-to-bookmarks", "remove-from-bookmarks"]);
+
+const addToBookmarksAction = (ressource: IRessource) => {
+  emit("add-to-bookmarks", ressource);
+};
+
+const removeFromBookmarksAction = (ressource: IRessource) => {
+  emit("remove-from-bookmarks", ressource);
+};
 </script>
 
 <template>
@@ -56,6 +66,14 @@ const mediaInFrench = computed(() => {
         {{ mediaInFrench }} ajouté le
         {{ dateInFrench }}
       </div>
+      <el-row class="bookmarks-buttons">
+        <el-button @click="addToBookmarksAction(ressource)" type="primary"
+          >+ liste</el-button
+        >
+        <el-button @click="removeFromBookmarksAction(ressource)" type="default"
+          >- liste</el-button
+        >
+      </el-row>
     </div>
   </el-card>
 </template>
@@ -80,5 +98,9 @@ const mediaInFrench = computed(() => {
 .ressource-image {
   text-align: center;
   display: block;
+}
+
+.bookmarks-buttons {
+  margin-top: 1em;
 }
 </style>
