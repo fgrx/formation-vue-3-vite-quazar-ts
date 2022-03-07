@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type IRessource from "@/interfaces/iRessource";
 import RessourceItem from "@/components/RessourceItem.vue";
+import VideoModal from "./components/VideoModal.vue";
 
 import data from "./data/db";
 import { ref } from "vue";
@@ -71,6 +72,7 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
           </el-row>
         </el-main>
       </el-container>
+      <VideoModal />
     </div>
   </main>
 </template>

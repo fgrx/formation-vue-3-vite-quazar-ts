@@ -5,6 +5,10 @@ import defaultImage from "@/assets/default-image.png";
 import frenchFlag from "@/assets/frenchFlag.svg";
 import { computed } from "vue";
 
+import eventBus from "@/plugins/eventBus";
+
+import { VideoPlay } from "@element-plus/icons-vue";
+
 interface IProps {
   ressource: IRessource;
   isBookmark: Boolean;
@@ -37,6 +41,10 @@ const addToBookmarksAction = (ressource: IRessource) => {
 
 const removeFromBookmarksAction = (ressource: IRessource) => {
   emit("remove-from-bookmarks", ressource);
+};
+
+const playVideoAction = (ressource: IRessource) => {
+  eventBus.emit("open-video-modal", ressource);
 };
 </script>
 
@@ -80,6 +88,14 @@ const removeFromBookmarksAction = (ressource: IRessource) => {
           type="default"
           >- liste</el-button
         >
+
+        <el-button
+          v-if="ressource.media === 'video'"
+          @click="playVideoAction(ressource)"
+          type="primary"
+          :icon="VideoPlay"
+          circle
+        ></el-button>
       </el-row>
     </div>
   </el-card>
