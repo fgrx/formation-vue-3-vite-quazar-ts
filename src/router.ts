@@ -4,7 +4,14 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 
-const routes: RouteRecordRaw[] = [];
+import Home from "@/views/Home.vue";
+
+const routes: RouteRecordRaw[] = [
+  {
+    component: Home,
+    path: "/",
+  },
+];
 
 export default createRouter({
   history: createWebHistory(),
