@@ -1,8 +1,8 @@
 interface IRessource {
   id?: string;
-  media: string;
+  media: "book" | "video" | "post" | "other";
   title: string;
-  lang: string;
+  lang: "fr" | "en";
   image?: string;
   url: string;
   description?: string;

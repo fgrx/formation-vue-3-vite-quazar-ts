@@ -5,7 +5,7 @@ import frenchFlag from "./assets/frenchFlag.svg";
 
 import data from "./data/db";
 
-const ressources: Array<IRessource> = data;
+const ressources = data as Array<IRessource>;
 </script>
 
 <template>
@@ -34,9 +34,9 @@ const ressources: Array<IRessource> = data;
               >
                 <el-image
                   style="height: 300px"
-                  fit="cover"
+                  fit="scale-down"
                   :src="ressource.image || defaultImage"
-                  class="image"
+                  class="ressource-image"
                 />
                 <div style="padding: 14px">
                   <h3 class="ressource-item-title">
@@ -85,5 +85,10 @@ const ressources: Array<IRessource> = data;
 
 .ressource-item-top-card {
   background-color: rgb(242, 249, 207);
+}
+
+.ressource-image {
+  text-align: center;
+  display: block;
 }
 </style>
