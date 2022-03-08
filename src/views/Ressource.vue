@@ -4,6 +4,7 @@ import ressourceService from "@/services/ressourceService";
 import defaultImage from "@/assets/default-image.png";
 import { ref } from "vue";
 import { ElLoading } from "element-plus";
+import ContentDisplayer from "@/components/ContentDisplayer.vue";
 
 import type IRessource from "@/interfaces/iRessource";
 
@@ -38,7 +39,11 @@ loading.close();
     <el-col :xs="24" :md="14"
       ><h1>{{ ressource.title }}</h1>
       <p><el-rate v-model="rating" disabled> </el-rate></p>
-      <p>{{ ressource.description }}</p>
+
+      <ContentDisplayer>
+        <template #title>Description de "{{ ressource.title }}"</template>
+        {{ ressource.description }}
+      </ContentDisplayer>
 
       <p>
         <a :href="ressource.url" target="blank">
