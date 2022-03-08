@@ -2,7 +2,7 @@
 
 ## Exercice DevWall
 
-Un projet complet basé sur Vue3, Setup API, Pini, Element UI et Typescript.
+Un projet complet basé sur Vue3, Vite, Setup API, Pinia, Element UI et Typescript.
 
 Fichiers nécessaires pour la réalisation de l'exercice :
 [Télécharger les fichiers de données](https://u.pcloud.link/publink/show?code=kZG8StXZBLvQAmrug2kR12wpvSgh0BJzteQX)
