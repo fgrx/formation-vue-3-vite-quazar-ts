@@ -1,6 +1,7 @@
 import type IRessource from "@/interfaces/iRessource";
 import ressourceService from "@/services/ressourceService";
 import { defineStore } from "pinia";
+import { useAuthStore } from "@/stores/auth";
 
 type RootState = {
   ressources: IRessource[];
@@ -32,7 +33,13 @@ export const useRessourceStore = defineStore({
       }
     },
     async deleteRessource(ressourceToDelete: IRessource) {
-      const res = await ressourceService.delteRessource(ressourceToDelete);
+      const authStore = useAuthStore();
+      const token = authStore.user.token;
+
+      const res = await ressourceService.delteRessource(
+        ressourceToDelete,
+        token
+      );
 
       if (res) {
         this.ressources = this.ressources.filter(
@@ -41,7 +48,13 @@ export const useRessourceStore = defineStore({
       }
     },
     async updateRessource(ressourceUpdated: IRessource) {
-      const res = await ressourceService.updateRessource(ressourceUpdated);
+      const authStore = useAuthStore();
+      const token = authStore.user.token;
+
+      const res = await ressourceService.updateRessource(
+        ressourceUpdated,
+        token
+      );
 
       if (res) {
         const index = this.ressources.indexOf(ressourceUpdated);

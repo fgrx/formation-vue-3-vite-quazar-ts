@@ -51,12 +51,16 @@ export default {
     return result;
   },
 
-  async delteRessource(ressource: IRessource): Promise<string> {
+  async delteRessource(ressource: IRessource, token: string): Promise<string> {
     let result;
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_SERVER}/ressources/${ressource.id}`
+        `${import.meta.env.VITE_API_SERVER_PROTECTED}/ressources/${
+          ressource.id
+        }`,
+        headers
       );
       result = response.data;
     } catch (error) {
@@ -67,13 +71,20 @@ export default {
     return result;
   },
 
-  async updateRessource(ressource: IRessource): Promise<IRessource> {
+  async updateRessource(
+    ressource: IRessource,
+    token: string
+  ): Promise<IRessource> {
     let result;
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_SERVER}/ressources/${ressource.id}`,
-        ressource
+        `${import.meta.env.VITE_API_SERVER_PROTECTED}/ressources/${
+          ressource.id
+        }`,
+        ressource,
+        headers
       );
       result = response.data;
     } catch (error) {
