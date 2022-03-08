@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type IRessource from "@/interfaces/iRessource";
-import RessourceItem from "@/components/RessourceItem.vue";
+//import RessourceItem from "@/components/RessourceItem.vue";
+import RessourceItem from "@/components/RessourceItemOptionApi.vue";
 import { useRessourceStore } from "@/stores/ressource";
 
 import { computed, ref } from "vue";
@@ -19,10 +20,6 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
   bookmarks.value = bookmarks.value.filter(
     (ressource) => ressource.id !== ressourceToRemove.id
   );
-
-  //ou
-  // const position = bookmarks.value.indexOf(ressourceToRemove);
-  // bookmarks.value.splice(position, 1);
 };
 </script>
 

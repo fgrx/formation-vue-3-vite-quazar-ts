@@ -1,34 +1,44 @@
-<script setup lang="ts">
+<script lang="ts">
 import type IRessource from "@/interfaces/iRessource";
+import { defineComponent } from "vue";
+import type { PropType } from "vue";
 
 import defaultImage from "@/assets/default-image.png";
 import frenchFlag from "@/assets/frenchFlag.svg";
 import { VideoPlay } from "@element-plus/icons-vue";
 
-import { dateInFrench, mediaInFrench } from "@/composables/useRessource";
-
 import eventBus from "@/plugins/eventBus";
 
-interface IProps {
-  ressource: IRessource;
-  isBookmark: Boolean;
-}
-const props = defineProps<IProps>();
-const { ressource, isBookmark } = props;
-
-const emit = defineEmits(["add-to-bookmarks", "remove-from-bookmarks"]);
-
-const addToBookmarksAction = (ressource: IRessource) => {
-  emit("add-to-bookmarks", ressource);
-};
-
-const removeFromBookmarksAction = (ressource: IRessource) => {
-  emit("remove-from-bookmarks", ressource);
-};
-
-const playVideoAction = (ressource: IRessource) => {
-  eventBus.emit("open-video-modal", ressource);
-};
+export default defineComponent({
+  props: {
+    ressource: {
+      type: Object as PropType<IRessource>,
+      default: {},
+    },
+    isBookmark: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      VideoPlay,
+      frenchFlag,
+      defaultImage,
+    };
+  },
+  methods: {
+    playVideoAction(ressource: IRessource) {
+      eventBus.emit("open-video-modal", ressource);
+    },
+    addToBookmarksAction(ressource: IRessource) {
+      this.$emit("add-to-bookmarks", ressource);
+    },
+    removeFromBookmarksAction(ressource: IRessource) {
+      this.$emit("remove-from-bookmarks", ressource);
+    },
+  },
+});
 </script>
 
 <template>
@@ -57,10 +67,6 @@ const playVideoAction = (ressource: IRessource) => {
 
         {{ ressource.title }}
       </h3>
-      <div class="ressource-item-infos bottom">
-        {{ mediaInFrench(ressource.media) }} ajouté le
-        {{ dateInFrench(ressource.date) }}
-      </div>
       <el-row class="ressource-action-buttons">
         <el-button
           @click="addToBookmarksAction(ressource)"
