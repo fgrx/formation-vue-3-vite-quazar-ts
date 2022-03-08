@@ -1,20 +1,9 @@
 <script lang="ts" setup>
-import type IRessource from "@/interfaces/iRessource";
-import { useRessourceStore } from "@/stores/ressource";
-import { computed } from "vue";
+import { dateInFrench, mediaInFrench } from "@/composables/useRessource";
+import useAdmin from "@/composables/useAdmin";
 
-const ressourceStore = useRessourceStore();
-
-const ressources = computed(() => ressourceStore.invalidRessources);
-
-const deleteRessourceAction = (ressource: IRessource) =>
-  ressourceStore.deleteRessource(ressource);
-
-const validRessourceAction = (ressource: IRessource) => {
-  const ressourceUpdated = ressource;
-  ressourceUpdated.isValid = true;
-  ressourceStore.updateRessource(ressourceUpdated);
-};
+const { invalidRessources, deleteRessourceAction, validRessourceAction } =
+  useAdmin();
 </script>
 
 <template>
@@ -23,10 +12,18 @@ const validRessourceAction = (ressource: IRessource) => {
   <el-card>
     <h2>Management</h2>
 
-    <el-table :data="ressources">
-      <el-table-column prop="date" />
+    <el-table :data="invalidRessources">
+      <el-table-column>
+        <template #default="scope">
+          {{ dateInFrench(scope.row.date) }}
+        </template>
+      </el-table-column>
       <el-table-column prop="title" />
-      <el-table-column prop="media" />
+      <el-table-column>
+        <template #default="scope">
+          {{ mediaInFrench(scope.row.media) }}
+        </template>
+      </el-table-column>
       <el-table-column>
         <template #default="scope">
           <a :href="scope.row.url" target="blank">

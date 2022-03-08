@@ -3,7 +3,8 @@ import type IRessource from "@/interfaces/iRessource";
 
 import defaultImage from "@/assets/default-image.png";
 import frenchFlag from "@/assets/frenchFlag.svg";
-import { computed } from "vue";
+
+import { dateInFrench, mediaInFrench } from "@/composables/useRessource";
 
 import eventBus from "@/plugins/eventBus";
 
@@ -14,24 +15,7 @@ interface IProps {
   isBookmark: Boolean;
 }
 const props = defineProps<IProps>();
-
-const dateInFrench = computed(() => {
-  const ressourceDate = new Date(props.ressource.date);
-  return ressourceDate.toLocaleDateString();
-});
-
-const mediaInFrench = computed(() => {
-  switch (props.ressource.media) {
-    case "video":
-      return "Vidéo";
-    case "post":
-      return "Article";
-    case "book":
-      return "Livre";
-    default:
-      return "Autre";
-  }
-});
+const { ressource, isBookmark } = props;
 
 const emit = defineEmits(["add-to-bookmarks", "remove-from-bookmarks"]);
 
@@ -75,8 +59,8 @@ const playVideoAction = (ressource: IRessource) => {
         {{ ressource.title }}
       </h3>
       <div class="ressource-item-infos bottom">
-        {{ mediaInFrench }} ajouté le
-        {{ dateInFrench }}
+        {{ mediaInFrench(ressource.media) }} ajouté le
+        {{ dateInFrench(ressource.date) }}
       </div>
       <el-row class="ressource-action-buttons">
         <el-button
