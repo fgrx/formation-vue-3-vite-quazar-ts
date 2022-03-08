@@ -4,9 +4,8 @@ import eventBus from "@/plugins/eventBus";
 import type IRessource from "@/interfaces/iRessource";
 import type { lang, media } from "@/interfaces/iRessource";
 
-import ressourceService from "@/services/ressourceService";
-
 import { computed, ref } from "vue";
+import { useRessourceStore } from "@/stores/ressource";
 
 const isOpen = ref(false);
 const successMessage = ref("");
@@ -60,11 +59,13 @@ const addRessourceAction = async () => {
     isValid: false,
   };
 
-  const newRessource = await ressourceService.addRessource(ressource);
+  const ressourceStore = useRessourceStore();
 
-  if (newRessource) {
-    successMessage.value = "Nouvelle ressource ajoutée avec succès";
-  }
+  ressourceStore
+    .addRessource(ressource)
+    .then(
+      (res) => (successMessage.value = "Nouvelle ressource ajoutée avec succès")
+    );
 };
 </script>
 

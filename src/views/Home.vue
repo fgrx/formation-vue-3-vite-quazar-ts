@@ -1,24 +1,15 @@
 <script setup lang="ts">
 import type IRessource from "@/interfaces/iRessource";
 import RessourceItem from "@/components/RessourceItem.vue";
+import { useRessourceStore } from "@/stores/ressource";
 
-import { ElLoading } from "element-plus";
+import { computed, ref } from "vue";
 
-import ressourceService from "@/services/ressourceService";
+const ressourceStore = useRessourceStore();
 
-import { ref } from "vue";
-
-const ressources = ref<IRessource[]>([]);
 const bookmarks = ref<IRessource[]>([]);
 
-const loading = ElLoading.service({
-  lock: true,
-  text: "Chargement",
-  background: "rgba(0, 0, 0, 0.7)",
-});
-
-ressourceService.getRessources().then((res) => (ressources.value = res));
-loading.close();
+const ressources = computed(() => ressourceStore.validRessources);
 
 const addToBookmarksAction = (ressource: IRessource) => {
   if (!bookmarks.value.includes(ressource)) bookmarks.value.push(ressource);

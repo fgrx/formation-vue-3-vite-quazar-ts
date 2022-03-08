@@ -3,8 +3,23 @@ import eventBus from "@/plugins/eventBus";
 import VideoModal from "@/components/VideoModal.vue";
 import RessourceFormModal from "@/components/RessourceFormModal.vue";
 
+import { useRessourceStore } from "@/stores/ressource";
+
+import { ElLoading } from "element-plus";
+
+import ressourceService from "@/services/ressourceService";
+
+const loading = ElLoading.service({
+  lock: true,
+  text: "Chargement",
+  background: "rgba(0, 0, 0, 0.7)",
+});
+
+const ressourceStore = useRessourceStore();
+ressourceStore.loadRessources().then(() => loading.close());
+
 const openRessourceFormAction = () => {
-  eventBus.emit("open-Ressource-Form-modal", "hel");
+  eventBus.emit("open-Ressource-Form-modal");
 };
 </script>
 
@@ -57,7 +72,7 @@ const openRessourceFormAction = () => {
   </main>
 </template>
 
-<style>
+<style lang="scss">
 @import "./assets/base.css";
 
 .el-menu-item a {
@@ -66,13 +81,16 @@ const openRessourceFormAction = () => {
   font-size: 1.3em;
 }
 
+.router-link-exact-active {
+  background: rgb(95, 47, 191);
+}
+
 .title-site {
   font-size: 1.5em;
   text-transform: uppercase;
-}
-
-.router-link-exact-active {
-  background: rgb(95, 47, 191);
+  .router-link-exact-active {
+    background: #3b0187;
+  }
 }
 
 .el-menu a {

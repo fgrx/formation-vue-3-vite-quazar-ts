@@ -188,54 +188,6 @@
       "image": "https://www.dunod.com/sites/default/files/styles/principal_desktop/public/thumbnails/image/9782100801169-001-X.jpeg",
       "id": "dv6tYa8",
       "description": "Le refactoring, ou ré-ingénierie du code, est l'opération consistant à retravailler le code source d'un programme de façon à en améliorer la lisibilité et par voie de conséquence la maintenance. Il ne s'agit pas de le compléter ou d'en corriger des bugs, mais d'en améliorer la structure sans en altérer le fonctionnement."
-    },
-    {
-      "title": "test",
-      "description": "",
-      "url": "http://google.fr",
-      "rating": 3,
-      "lang": "en",
-      "media": "post",
-      "date": "2022-03-07T17:45:55.194Z",
-      "isTop": false,
-      "isValid": false,
-      "id": "-YC5WFk"
-    },
-    {
-      "title": "test 2",
-      "description": "",
-      "url": "http://yahoo.Fr",
-      "rating": 3,
-      "lang": "en",
-      "media": "post",
-      "date": "2022-03-07T17:48:31.240Z",
-      "isTop": false,
-      "isValid": false,
-      "id": "-jp-qYw"
-    },
-    {
-      "title": "test 3",
-      "description": "",
-      "url": "http://",
-      "rating": 3,
-      "lang": "en",
-      "media": "post",
-      "date": "2022-03-07T17:50:06.144Z",
-      "isTop": false,
-      "isValid": false,
-      "id": "7vnpz_Z"
-    },
-    {
-      "title": "test 4",
-      "description": "",
-      "url": "http://",
-      "rating": 3,
-      "lang": "en",
-      "media": "post",
-      "date": "2022-03-07T17:50:34.657Z",
-      "isTop": false,
-      "isValid": false,
-      "id": "r1eSnzu"
     }
   ]
 }

@@ -7,7 +7,7 @@ export default {
 
     try {
       const response = await axios(
-        `${import.meta.env.VITE_API_SERVER}/ressources`
+        `${import.meta.env.VITE_API_SERVER}/ressources?_sort=date&_order=desc`
       );
       results = response.data;
     } catch (error) {
@@ -40,6 +40,39 @@ export default {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_SERVER}/ressources/`,
+        ressource
+      );
+      result = response.data;
+    } catch (error) {
+      alert("Une erreur s'est produite, veuillez réessayer plus tard...");
+      console.error(error);
+    }
+
+    return result;
+  },
+
+  async delteRessource(ressource: IRessource): Promise<string> {
+    let result;
+
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_SERVER}/ressources/${ressource.id}`
+      );
+      result = response.data;
+    } catch (error) {
+      alert("Une erreur s'est produite, veuillez réessayer plus tard...");
+      console.error(error);
+    }
+
+    return result;
+  },
+
+  async updateRessource(ressource: IRessource): Promise<IRessource> {
+    let result;
+
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_SERVER}/ressources/${ressource.id}`,
         ressource
       );
       result = response.data;
