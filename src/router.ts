@@ -6,6 +6,7 @@ import {
 
 import Home from "@/views/Home.vue";
 import Ressource from "@/views/Ressource.vue";
+import { useAuthStore } from "@/stores/auth";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -24,6 +25,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/Admin/Admin.vue"),
     path: "/admin",
     name: "Admin",
+    meta: { needAuth: true },
     children: [
       {
         component: () => import("@/views/Admin/Management.vue"),
@@ -42,9 +44,29 @@ const routes: RouteRecordRaw[] = [
     path: "/ressource/:id",
     name: "Ressource",
   },
+  {
+    //Lazyloading de route
+    component: () => import("@/views/Login.vue"),
+    path: "/login",
+    name: "Login",
+  },
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  const { token } = authStore.user;
+  const isPageProtected = to.matched.some((route) => route.meta.needAuth);
+
+  if (!token && isPageProtected) {
+    next({ name: "Login" });
+  } else {
+    next();
+  }
+});
+
+export default router;

@@ -80,7 +80,7 @@ const addRessourceAction = async () => {
       {{ successMessage }}
     </el-alert>
 
-    <form v-show="!successMessage">
+    <el-form v-show="!successMessage">
       <el-form-item label="Titre">
         <el-input v-model="titleForm"></el-input>
       </el-form-item>
@@ -125,7 +125,7 @@ const addRessourceAction = async () => {
         >Ajouter</el-button
       >
       <el-button @click="closeFormAction">Fermer</el-button>
-    </form>
+    </el-form>
   </el-dialog>
 </template>
 

@@ -7,10 +7,8 @@ const { invalidRessources, deleteRessourceAction, validRessourceAction } =
 </script>
 
 <template>
-  <h1>Validation</h1>
-
   <el-card>
-    <h2>Management</h2>
+    <h2>Validation</h2>
 
     <el-table :data="invalidRessources">
       <el-table-column>
