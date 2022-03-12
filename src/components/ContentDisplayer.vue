@@ -1,4 +1,4 @@
-<script setup lag="ts"></script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="desription-livre">

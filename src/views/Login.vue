@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import authService from "@/services/authService.ts";
+import authService from "@/services/authService";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import type { IUser } from "@/interfaces/IUser";
