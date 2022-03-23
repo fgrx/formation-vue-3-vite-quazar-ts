@@ -18,7 +18,7 @@ npm install
 ### Installer le faux serveur REST avec le middleware d'authentification
 
 ```
-npm install -D json-server json-server-auth
+npm install -g -D json-server json-server-auth
 ```
 
 ### Lancer le faux serveur REST API
