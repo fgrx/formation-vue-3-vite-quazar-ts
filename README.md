@@ -1,4 +1,4 @@
-# formation-vue3
+# Formation Vue3 setup api / Typescript / Pinia / Vite / Element-ui
 
 ## Exercice DevWall
 
