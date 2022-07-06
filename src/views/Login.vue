@@ -29,7 +29,7 @@ const connectAction = async () => {
 
   <el-alert title="message" v-if="message" type="error" effect="dark">
   </el-alert>
-  <el-form>
+  <el-form @submit.prevent="connectAction">
     <el-form-item label="Adresse email">
       <el-input v-model="email" />
     </el-form-item>
@@ -38,6 +38,8 @@ const connectAction = async () => {
       <el-input v-model="password" type="password" />
     </el-form-item>
 
-    <el-button @click="connectAction" type="primary">Connexion</el-button>
+    <el-button @click="connectAction" native-type="submit" type="primary"
+      >Connexion</el-button
+    >
   </el-form>
 </template>
