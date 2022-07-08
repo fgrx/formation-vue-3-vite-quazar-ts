@@ -101,6 +101,7 @@ const openRessourceFormAction = () => {
   color: white !important;
 }
 
+//Transition de page
 .fade-enter-from {
   opacity: 0;
   transform: translateX(-100px);

@@ -25,25 +25,28 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
 
 <template>
   <div>
-    <el-card v-if="bookmarks.length">
-      <h2>Liste de lecture</h2>
+    <transition name="fade">
+      <el-card v-if="bookmarks.length">
+        <h2>Liste de lecture</h2>
 
-      <el-row :gutter="40">
-        <el-col
-          v-for="ressource in bookmarks"
-          :key="ressource.id"
-          :xs="24"
-          :md="8"
-          :lg="6"
-        >
-          <RessourceItem
-            @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
-            :ressource="ressource"
-            :isBookmark="true"
-          />
-        </el-col>
-      </el-row>
-    </el-card>
+        <TransitionGroup tag="div" class="el-row" name="fade-down">
+          <el-col
+            v-for="ressource in bookmarks"
+            :key="ressource.id"
+            :xs="24"
+            :md="8"
+            :lg="6"
+            style="padding-left: 20px; padding-right: 20px"
+          >
+            <RessourceItem
+              @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
+              :ressource="ressource"
+              :isBookmark="true"
+            />
+          </el-col>
+        </TransitionGroup>
+      </el-card>
+    </transition>
 
     <h2>Toutes les ressources</h2>
     <el-row :gutter="40">
@@ -63,3 +66,19 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
     </el-row>
   </div>
 </template>
+
+<style scoped>
+.fade-down-enter-from {
+  opacity: 0;
+}
+
+.fade-down-leave-to {
+  opacity: 0;
+  transform: translatey(100px);
+}
+
+.fade-down-enter-active,
+.fade-down-leave-active {
+  transition: all 0.5s ease-out;
+}
+</style>
