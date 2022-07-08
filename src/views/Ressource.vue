@@ -28,30 +28,32 @@ loading.close();
 </script>
 
 <template>
-  <el-row :gutter="20" v-if="ressource">
-    <el-col :xs="24" :md="10">
-      <el-image
-        style="width: 100%"
-        fit="scale-down"
-        :src="ressource.image || defaultImage"
-        class="ressource-image"
-    /></el-col>
-    <el-col :xs="24" :md="14"
-      ><h1>{{ ressource.title }}</h1>
-      <p><el-rate v-model="rating" disabled> </el-rate></p>
+  <div>
+    <el-row :gutter="20" v-if="ressource">
+      <el-col :xs="24" :md="10">
+        <el-image
+          style="width: 100%"
+          fit="scale-down"
+          :src="ressource.image || defaultImage"
+          class="ressource-image"
+      /></el-col>
+      <el-col :xs="24" :md="14"
+        ><h1>{{ ressource.title }}</h1>
+        <p><el-rate v-model="rating" disabled> </el-rate></p>
 
-      <ContentDisplayer>
-        <template #title>Description de "{{ ressource.title }}"</template>
-        {{ ressource.description }}
-      </ContentDisplayer>
+        <ContentDisplayer>
+          <template #title>Description de "{{ ressource.title }}"</template>
+          {{ ressource.description }}
+        </ContentDisplayer>
 
-      <p>
-        <a :href="ressource.url" target="blank">
-          <el-button type="primary">Voir la ressource</el-button>
-        </a>
-      </p>
-    </el-col>
-  </el-row>
+        <p>
+          <a :href="ressource.url" target="blank">
+            <el-button type="primary">Voir la ressource</el-button>
+          </a>
+        </p>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <style>

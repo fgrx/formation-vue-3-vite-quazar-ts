@@ -24,40 +24,42 @@ const removeFromBookmarksAction = (ressourceToRemove: IRessource) => {
 </script>
 
 <template>
-  <el-card v-if="bookmarks.length">
-    <h2>Liste de lecture</h2>
+  <div>
+    <el-card v-if="bookmarks.length">
+      <h2>Liste de lecture</h2>
 
+      <el-row :gutter="40">
+        <el-col
+          v-for="ressource in bookmarks"
+          :key="ressource.id"
+          :xs="24"
+          :md="8"
+          :lg="6"
+        >
+          <RessourceItem
+            @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
+            :ressource="ressource"
+            :isBookmark="true"
+          />
+        </el-col>
+      </el-row>
+    </el-card>
+
+    <h2>Toutes les ressources</h2>
     <el-row :gutter="40">
       <el-col
-        v-for="ressource in bookmarks"
+        v-for="ressource in ressources"
         :key="ressource.id"
         :xs="24"
         :md="8"
         :lg="6"
       >
         <RessourceItem
-          @remove-from-bookmarks="removeFromBookmarksAction(ressource)"
+          @add-to-bookmarks="addToBookmarksAction(ressource)"
           :ressource="ressource"
-          :isBookmark="true"
+          :isBookmark="false"
         />
       </el-col>
     </el-row>
-  </el-card>
-
-  <h2>Toutes les ressources</h2>
-  <el-row :gutter="40">
-    <el-col
-      v-for="ressource in ressources"
-      :key="ressource.id"
-      :xs="24"
-      :md="8"
-      :lg="6"
-    >
-      <RessourceItem
-        @add-to-bookmarks="addToBookmarksAction(ressource)"
-        :ressource="ressource"
-        :isBookmark="false"
-      />
-    </el-col>
-  </el-row>
+  </div>
 </template>

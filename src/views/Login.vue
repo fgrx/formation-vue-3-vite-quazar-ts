@@ -25,21 +25,23 @@ const connectAction = async () => {
 </script>
 
 <template>
-  <h1>Connexion</h1>
+  <div>
+    <h1>Connexion</h1>
 
-  <el-alert title="message" v-if="message" type="error" effect="dark">
-  </el-alert>
-  <el-form @submit.prevent="connectAction">
-    <el-form-item label="Adresse email">
-      <el-input v-model="email" />
-    </el-form-item>
+    <el-alert title="message" v-if="message" type="error" effect="dark">
+    </el-alert>
+    <el-form @submit.prevent="connectAction">
+      <el-form-item label="Adresse email">
+        <el-input v-model="email" />
+      </el-form-item>
 
-    <el-form-item label="Mot de passe">
-      <el-input v-model="password" type="password" />
-    </el-form-item>
+      <el-form-item label="Mot de passe">
+        <el-input v-model="password" type="password" />
+      </el-form-item>
 
-    <el-button @click="connectAction" native-type="submit" type="primary"
-      >Connexion</el-button
-    >
-  </el-form>
+      <el-button @click="connectAction" native-type="submit" type="primary"
+        >Connexion</el-button
+      >
+    </el-form>
+  </div>
 </template>
