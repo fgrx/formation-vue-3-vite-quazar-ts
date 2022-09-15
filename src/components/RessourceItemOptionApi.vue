@@ -10,6 +10,9 @@ import { VideoPlay } from "@element-plus/icons-vue";
 import eventBus from "@/plugins/eventBus";
 
 export default defineComponent({
+  components: {
+    VideoPlay,
+  },
   props: {
     ressource: {
       type: Object as PropType<IRessource>,
@@ -20,9 +23,9 @@ export default defineComponent({
       default: false,
     },
   },
+
   data() {
     return {
-      VideoPlay,
       frenchFlag,
       defaultImage,
     };
@@ -85,9 +88,12 @@ export default defineComponent({
           v-if="ressource.media === 'video'"
           @click="playVideoAction(ressource)"
           type="primary"
-          :icon="VideoPlay"
           circle
-        ></el-button>
+        >
+          <el-icon>
+            <VideoPlay />
+          </el-icon>
+        </el-button>
       </el-row>
     </div>
   </el-card>
