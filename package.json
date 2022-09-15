@@ -6,7 +6,9 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
-    "api": "json-server db.json --watch -m ./node_modules/json-server-auth -p 3001"
+    "api": "json-server db.json --watch -m ./node_modules/json-server-auth -p 3001",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.0.1",
@@ -26,6 +28,7 @@
     "sass": "^1.49.9",
     "typescript": "~4.5.5",
     "vite": "^2.8.4",
+    "vitest": "^0.23.2",
     "vue-tsc": "^0.31.4"
   }
 }
