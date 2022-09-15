@@ -2,6 +2,7 @@
 import eventBus from "@/plugins/eventBus";
 import VideoModal from "@/components/VideoModal.vue";
 import RessourceFormModal from "@/components/RessourceFormModal.vue";
+import WelcomeScreenModal from "@/components/WelcomeScreenModal.vue";
 
 import { useRessourceStore } from "@/stores/ressource";
 
@@ -71,6 +72,7 @@ const openRessourceFormAction = () => {
         </el-container>
         <VideoModal />
         <RessourceFormModal />
+        <WelcomeScreenModal />
       </div>
     </main>
   </div>
