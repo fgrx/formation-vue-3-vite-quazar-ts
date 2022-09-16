@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import partyImage from "@/assets/party.svg";
 import { useAuthStore } from "@/stores/auth";
 
@@ -11,9 +11,17 @@ const authStore = useAuthStore();
 
 const { user } = storeToRefs(authStore);
 
-watch(user, (newUser, oldUser) => {
-  isOpen.value = true;
-  console.log(`Connexion ${newUser.email}`);
+// watch(user, (newUser, oldUser) => {
+//   isOpen.value = true;
+//   console.log(`Connexion ${newUser.email}`);
+// });
+
+//Watcheffect se lance dès le début contrairement à watch. Il observe toutes les propriétés réactives qui se trouvent à l'intérieur
+watchEffect(() => {
+  if (user.value.email) {
+    isOpen.value = true;
+    console.log(`Connexion ${user.value.email}`);
+  }
 });
 </script>
 
