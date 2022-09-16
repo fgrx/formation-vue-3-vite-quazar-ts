@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type IRessource from "@/interfaces/iRessource";
-//import RessourceItem from "@/components/RessourceItem.vue";
-import RessourceItem from "@/components/RessourceItemOptionApi.vue";
+import RessourceItem from "@/components/RessourceItem.vue";
+//import RessourceItem from "@/components/RessourceItemOptionApi.vue";
 import { useRessourceStore } from "@/stores/ressource";
 
 import { computed, ref } from "vue";

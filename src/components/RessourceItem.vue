@@ -46,7 +46,7 @@ const playVideoAction = (ressource: IRessource) => {
       />
     </router-link>
     <div style="padding: 14px">
-      <h3 class="ressource-item-title">
+      <h3 class="ressource-item-title" data-test-id="title">
         <el-image
           v-if="ressource.lang === 'fr'"
           style="height: 20px"
@@ -61,17 +61,22 @@ const playVideoAction = (ressource: IRessource) => {
         {{ mediaInFrench(ressource.media) }} ajouté le
         {{ dateInFrench(ressource.date) }}
       </div>
+      <hr />
+      <div data-test-id="dumb" v-if="isBookmark">hidden</div>
+      <hr />
       <el-row class="ressource-action-buttons">
         <el-button
           @click="addToBookmarksAction(ressource)"
           type="primary"
           v-if="!isBookmark"
+          data-test-id="addToBookmarks"
           >+ liste</el-button
         >
         <el-button
           v-if="isBookmark"
           @click="removeFromBookmarksAction(ressource)"
           type="default"
+          data-test-id="removeFromBookmarks"
           >- liste</el-button
         >
 
