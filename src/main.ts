@@ -9,6 +9,29 @@ import { createPinia } from "pinia";
 
 const app = createApp(App);
 
+app.directive("presentation", {
+  beforeMount: (el, binding) => {
+    console.log(binding.value);
+
+    switch (binding.value) {
+      case "bold":
+        el.style.fontWeight = "bold";
+        break;
+      case "italic":
+        el.style.fontStyle = "italic";
+        break;
+      case "highlight":
+        el.style.backgroundColor = "#ccc";
+        break;
+      case "big":
+        el.style.fontSize = "24px";
+        break;
+      default:
+        break;
+    }
+  },
+});
+
 app.use(ElementPlus);
 app.use(router);
 app.use(createPinia());
