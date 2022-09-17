@@ -144,3 +144,9 @@ git checkout 6128720e48e6ec4c3c5369e3b7d6068214a28ce2
 ```
 git checkout 6cb0b6a2d79f4307112d21df15807f8b553abd27
 ```
+
+### Tests end to end
+
+```
+git checkout df61e630b6e06078c8ed64e0551a34b3a6e9c092
+```
