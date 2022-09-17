@@ -61,9 +61,7 @@ const playVideoAction = (ressource: IRessource) => {
         {{ mediaInFrench(ressource.media) }} ajouté le
         {{ dateInFrench(ressource.date) }}
       </div>
-      <hr />
-      <div data-test-id="dumb" v-if="isBookmark">hidden</div>
-      <hr />
+
       <el-row class="ressource-action-buttons">
         <el-button
           @click="addToBookmarksAction(ressource)"

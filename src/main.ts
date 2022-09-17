@@ -10,9 +10,7 @@ import { createPinia } from "pinia";
 const app = createApp(App);
 
 app.directive("presentation", {
-  beforeMount: (el, binding) => {
-    console.log(binding.value);
-
+  created: (el, binding) => {
     switch (binding.value) {
       case "bold":
         el.style.fontWeight = "bold";

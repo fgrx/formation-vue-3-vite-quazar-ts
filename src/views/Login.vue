@@ -29,7 +29,7 @@ const connectAction = async () => {
     <h1>Connexion</h1>
 
     <el-alert
-      title="message"
+      :title="message"
       v-if="message"
       type="error"
       effect="dark"
